@@ -1,10 +1,11 @@
-run-project:
-	# run project
-	@echo "Grafana UI: http://localhost:3000"
+# Commande pour tout lancer
+start-project:
+	docker compose up -d --build
 
-test-api:
-	curl -X POST "https://localhost/predict" \
-     -H "Content-Type: application/json" \
-     -d '{"sentence": "Oh yeah, that was soooo cool!"}' \
-	 --user admin:admin \
-     --cacert ./deployments/nginx/certs/nginx.crt;
+# Commande pour tout arrêter
+stop-project:
+	docker compose down
+
+# Commande pour lancer les tests automatiques
+test:
+	bash tests/run_tests.sh
